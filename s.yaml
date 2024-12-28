@@ -11,6 +11,7 @@ services:
       function:
         name: cambridge-dictionary-api-j86v
         description: Initialize
+        handler: index.handler 
         runtime: custom.debian10
         environmentVariables:
           PATH: >-
@@ -31,7 +32,7 @@ services:
             - npm
           args:
             - run
-            - dev
+            - start
       triggers:
         - name: httpTrigger
           type: http
