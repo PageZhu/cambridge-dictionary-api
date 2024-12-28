@@ -31,7 +31,7 @@ services:
             - npm
           args:
             - run
-            - start
+            - dev
       triggers:
         - name: httpTrigger
           type: http
