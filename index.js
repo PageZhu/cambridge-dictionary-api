@@ -4,7 +4,12 @@ const axios = require("axios");
 const fetchVerbs = (wiki) => {
   return new Promise((resolve, reject) => {
     axios
-      .get(wiki)
+      .get(wiki, {
+        timeout: 100000,
+        headers: {
+          'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'
+        }
+      })
       .then((response) => {
         const $$ = cheerio.load(response.data);
         const verb = $$("tr > td > p ").text();
@@ -42,7 +47,12 @@ exports.handler = async function (event, context) {
 
   const url = `https://dictionary.cambridge.org/${nation}/dictionary/${language}/${entry}`;
   try {
-    const response = await axios.get(url);
+    const response = await axios.get(url, {
+      timeout: 100000,
+      headers: {
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'
+      }
+    });
     const $ = cheerio.load(response.data);
     const siteurl = "https://dictionary.cambridge.org";
     const wiki = `https://simple.wiktionary.org/wiki/${entry}`;
