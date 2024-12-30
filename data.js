@@ -59,6 +59,8 @@ app.get("/api/dictionary/:language/:entry", (req, res, next) => {
     language = "english-chinese-traditional";
   } else if (slugLanguage === "en-cn") {
     language = "english-chinese-simplified";
+  } else {
+    language = slugLanguage;
   }
 
   const url = `https://dictionary.cambridge.org/${nation}/dictionary/${language}/${entry}`;
